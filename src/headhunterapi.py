@@ -1,6 +1,6 @@
 import requests
 
-from abstract_searchjobapi import SearchJobAPI
+from .abstract_searchjobapi import SearchJobAPI
 
 
 class HeadHunterAPI(SearchJobAPI):
