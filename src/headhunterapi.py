@@ -4,48 +4,48 @@ from abstract_searchjobapi import SearchJobAPI
 
 
 class HeadHunterAPI(SearchJobAPI):
-    """
-    Класс для работы с API платформы HeadHunter с вакансиями.
-    """
+    """Класс для работы с API платформы HeadHunter с вакансиями."""
 
     def __init__(self):
         """
-        Создание экземпляра класса, где в data_json будут хранится полученные данные в json формате.
+        Создание экземпляра класса, где в data_json будут хранится полученные данные в JSON формате.
         """
         self.data_json = None
 
     def get_vacancies(self, query: str):
         """
-        Метод, для получения вакансий с hh.ru в формате json.
-
+        Метод для получения вакансий с hh.ru в формате JSON.
         :param query: Поисковый запрос.
-        :return: Вакансии в формате json.
+        :return: Вакансии в формате JSON.
         """
+        if not isinstance(query, str) or not query:
+            raise ValueError('Поисковый запрос должен быть непустой строкой.')
 
         url = 'https://api.hh.ru/vacancies'
 
-        if isinstance(query, str):
-            query_ = {'text': query}
+        query_ = {'text': query}
 
-        else:
-            raise ValueError('Запрос составлен не корректно... :(')
+        try:
+            response = requests.get(url, params=query_)
 
-        response = requests.get(url, params=query_)
-
-        if response.status_code == 200:
+            response.raise_for_status()  # Вызов исключения для кодов статуса 4xx/5xx
 
             self.data_json = response.json()
-
             return self.data_json
 
-        raise Exception('О нет, что-то пошло не так. Попробуй позже.')
+        except requests.exceptions.RequestException as e:
+            raise Exception(f'Ошибка при выполнении запроса: {e}.')
 
     def __str__(self):
         """
         Метод для отображения экземпляра класса HeadHunterAPI.
-        :return: f-строка.
+        :return: f-строка с данными в формате JSON из атрибута data_json.
         """
         return f'{self.data_json}'
 
     def __repr__(self):
-        pass
+        """
+        Возвращает строковое представление экземпляра класса HeadHunterAPI.
+        :return: f-строка с данными в формате JSON из атрибута data_json.
+        """
+        return f'HeadHunterAPI(data_json={self.data_json})'
