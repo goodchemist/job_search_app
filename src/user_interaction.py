@@ -1,9 +1,15 @@
+from src.headhunterapi import HeadHunterAPI
+
 # Функция для взаимодействия с пользователем
 def user_interaction():
     # Пользователь вводит ключевое слово
-    search_query = input("Привет, я помогу тебе найти работу! :)\nВведите поисковый запрос: ")
+    search_query = input("Привет, я помогу тебе найти работу! :)\nВведите ключевое слово для поиска: ").strip().lower()
 
-    # Получение нужных вакансий с HH.ru
+    # Создание экземпляра класса для работы с API сайтов с вакансиями
+    hh_api = HeadHunterAPI()
+
+    # Получение нужных вакансий с HH.ru в формате JSON
+    hh_vacancies = hh_api.get_vacancies(search_query)
 
     # Цикл для выбора нужного варианта пользователем
     while True:
