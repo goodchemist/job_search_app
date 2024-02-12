@@ -25,3 +25,16 @@ class JSONSaver:
         """
         with open(self.file_name, 'w') as file:
             file.truncate(0)  # обрезаем файл до 0 байт
+
+    def add_to_json_file(self, vacancy):
+        """
+        Добавление одной вакансии в JSON-файл.
+        :param vacancy: информация об одной вакансии.
+        """
+        with open(self.file_name, 'r') as file:
+            current_data = json.load(file)
+
+        current_data.append(vacancy)
+
+        with open(self.file_name, 'w') as file:
+            json.dump(current_data, file)
