@@ -44,3 +44,22 @@ def test_clear_json_file(file_name):
     # проверяем пустой ли файл
     with open(file_name, "r") as file:
         assert file.read() == ""
+
+
+def test_add_to_json_file(file_name):
+    """
+    Проверяет работу метода add_to_json_file.
+    """
+    json_saver = JSONSaver(file_name)  # создаем экземпляр JSONSaver
+
+    test_data = [{"name": "Alice", "age": 25}]  # тестовые данные
+    json_saver.save_to_json(test_data)  # сохраняем данные в JSON-файл
+
+    new_data = {"name": "Bob", "age": 30}  # новые тестовые данные
+    json_saver.add_to_json_file(new_data)  # добавляем новые тестовые данные
+
+    # проверяем записались ли в файл новые тестовые данные
+    with open(file_name, "r") as file:
+        data = json.load(file)
+        assert len(data) == 2
+        assert data[1] == new_data
