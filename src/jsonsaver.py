@@ -18,3 +18,10 @@ class JSONSaver:
         """
         with open(self.file_name, 'w') as file:
             json.dump(data, file)
+
+    def clear_json_file(self):
+        """
+        Очистка JSON-файла.
+        """
+        with open(self.file_name, 'w') as file:
+            file.truncate(0)  # обрезаем файл до 0 байт
