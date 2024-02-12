@@ -27,3 +27,20 @@ def test_save_to_json(file_name):
     with open(file_name, "r") as file:
         data = json.load(file)
         assert data == test_data  # совпадают ли данные в файле с тестовыми данными
+
+
+def test_clear_json_file(file_name):
+    """
+    Проверяет работу метода clear_json_file.
+    """
+    json_saver = JSONSaver(file_name)  # создаем экземпляр JSONSaver
+
+    # записывае тестовые данные
+    with open(file_name, "w") as file:
+        file.write("some data")
+
+    json_saver.clear_json_file()  # очищаем файл
+
+    # проверяем пустой ли файл
+    with open(file_name, "r") as file:
+        assert file.read() == ""
