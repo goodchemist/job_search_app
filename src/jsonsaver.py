@@ -44,3 +44,17 @@ class JSONSaver:
 
         with open(self.file_name, 'w') as file:
             json.dump(current_data, file)
+
+    def __repr__(self) -> str:
+        """
+        Возвращает строковое представление экземпляра класса JSONSaver.
+        :return: f-строка с данными экземпляра JSONSaver.
+        """
+        return f'JSONSaver(file_name={self.file_name})'
+
+    def __str__(self) -> str:
+        """
+        Метод для отображения экземпляра класса JSONSaver.
+        :return: название JSON-файла.
+        """
+        return f'{self.file_name}'
