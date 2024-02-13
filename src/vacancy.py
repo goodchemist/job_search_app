@@ -37,3 +37,57 @@ class Vacancy:
         return (f'Vacancy(name={self.name}, salary_from={self.salary_from}, salary_to={self.salary_to}, '
                 f'salary_currency={self.salary_currency}, city={self.city}, description={self.description}, '
                 f'url_vacancy={self.url_vacancy})')
+
+    @classmethod
+    def cast_to_object_list(cls, json_data) -> list:
+        """
+        Преобразует набор данных из JSON в список объектов.
+        :param json_data: JSON с информацией о вакансиях.
+        :return: список с вакансиями.
+        """
+        vacancies = []
+
+        for vacancy_data in json_data['items']:
+            name = vacancy_data['name']
+
+            try:
+                salary_from = vacancy_data['salary']['from']
+            except TypeError:
+                salary_from = '--'
+
+            if salary_from is None:
+                salary_from = '--'
+
+            try:
+                salary_to = vacancy_data['salary']['to']
+            except TypeError:
+                salary_to = '--'
+
+            if salary_to is None:
+                salary_to = '--'
+
+            try:
+                salary_currency = vacancy_data['salary']['currency']
+            except TypeError:
+                salary_currency = 'Валюта не указана'
+
+            if salary_currency is None:
+                salary_currency = 'Валюта не указана'
+
+            city = vacancy_data['area']['name']
+            description = vacancy_data['snippet']['responsibility']
+            url_vacancy = vacancy_data['alternate_url']
+
+            vacancy = cls(
+                name,
+                salary_from,
+                salary_to,
+                salary_currency,
+                city,
+                description,
+                url_vacancy
+            )
+
+            vacancies.append(vacancy)
+
+        return vacancies
