@@ -14,8 +14,8 @@ class Vacancy:
         :param url_vacancy: ссылка на вакансию.
         """
         self.name = name
-        self.salary_from = int(salary_from)
-        self.salary_to = int(salary_to)
+        self.salary_from = salary_from
+        self.salary_to = salary_to
         self.salary_currency = salary_currency
         self.city = city
         self.description = description

@@ -11,13 +11,19 @@ class JSONSaver:
         """
         self.file_name = file_name
 
-    def save_to_json(self, data):
+    def save_to_json(self, vacancies):
         """
         Запись информации о вакансиях в JSON-файл.
-        :param data: информация о вакансиях.
+        :param vacancies: информация о вакансиях.
         """
+        vacancy_list = []
+
+        for vacancy in vacancies:
+            vacancy_dict = vacancy.__dict__
+            vacancy_list.append(vacancy_dict)
+
         with open(self.file_name, 'w') as file:
-            json.dump(data, file)
+            json.dump(vacancy_list, file, ensure_ascii=False, indent=4)  # без использования кодировки ASCII + отступы
 
     def clear_json_file(self):
         """
