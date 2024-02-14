@@ -91,3 +91,13 @@ class Vacancy:
             vacancies.append(vacancy)
 
         return vacancies
+
+    @classmethod
+    def sort_by_salary(cls, vacancies: list) -> list:
+        """
+        Сортирует вакансии по зарплате, от большей к наименьшей.
+        :param vacancies: список с вакансиями.
+        :return: отсортированный список вакансий по зарплате.
+        """
+        sorted_list = sorted(vacancies, key=lambda v: v.salary_from if v.salary_from != '--' else 0, reverse=True)
+        return sorted_list
