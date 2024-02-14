@@ -37,13 +37,17 @@ class JSONSaver:
         Добавление одной вакансии в JSON-файл.
         :param vacancy: информация об одной вакансии.
         """
-        with open(self.file_name, 'r') as file:
-            current_data = json.load(file)
+        try:
+            with open(self.file_name, 'r') as file:
+                current_data = json.load(file)
 
-        current_data.append(vacancy)
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
+            current_data = []
+
+        current_data.append(vacancy.__dict__)
 
         with open(self.file_name, 'w') as file:
-            json.dump(current_data, file)
+            json.dump(current_data, file, ensure_ascii=False, indent=4)  # без использования кодировки ASCII + отступы
 
     def __repr__(self) -> str:
         """
