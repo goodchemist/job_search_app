@@ -92,6 +92,26 @@ class Vacancy:
 
         return vacancies
 
+    @staticmethod
+    def calculate_max_salary(vacancy) -> int | float:
+        """
+        Метод для расчета большего значения зарплаты из диапазона 'от'-'до', если они указаны.
+        :param vacancy: экземпляр класса Vacancy.
+        :return: большее значение диапазона зарплаты.
+        """
+        if vacancy.salary_to == '--':
+            if vacancy.salary_from == '--':
+                return 0
+            elif isinstance(vacancy.salary_from, (int, float)):
+                return vacancy.salary_from
+
+        elif vacancy.salary_from == '--':
+            if isinstance(vacancy.salary_to, (int, float)):
+                return vacancy.salary_to
+
+        else:
+            return max(vacancy.salary_to, vacancy.salary_from)
+
     @classmethod
     def sort_by_salary(cls, vacancies: list) -> list:
         """
@@ -99,5 +119,7 @@ class Vacancy:
         :param vacancies: список с вакансиями.
         :return: отсортированный список вакансий по зарплате.
         """
-        sorted_list = sorted(vacancies, key=lambda v: v.salary_from if v.salary_from != '--' else 0, reverse=True)
-        return sorted_list
+
+        sorted_vacancies = sorted(vacancies,
+                                  key=lambda vacancy: (cls.calculate_max_salary(vacancy), vacancy.salary_currency))
+        return sorted_vacancies
