@@ -124,3 +124,41 @@ class Vacancy:
                                   key=lambda vacancy: (cls.calculate_max_salary(vacancy), vacancy.salary_currency),
                                   reverse=True)
         return sorted_vacancies
+
+    @classmethod
+    def get_top_n_vacancies_by_salary(cls, vacancies: list, top_n: int) -> list:
+        """
+        Сохраняет только по top_n вакансии с максимальной зарплатой в каждой категории salary_currency.
+        Если в категории меньше top_n то сколько есть.
+        :param vacancies: список вакансий.
+        :param top_n: количество вакансий для вывода в топ.
+        :return: список вакансий с максимальной зарплатой в соответствующей валюте.
+        """
+
+        sorted_vacancies = cls.sort_by_salary(vacancies)
+
+        top_vacancies = {}
+
+        for vacancy in sorted_vacancies:
+
+            salary_currency = vacancy.salary_currency
+
+            if salary_currency == 'Валюта не указана':
+                continue
+
+            if salary_currency not in top_vacancies:
+                top_vacancies[salary_currency] = []
+
+            else:
+                if len(top_vacancies[salary_currency]) >= top_n:
+                    continue
+
+                else:
+                    top_vacancies[salary_currency].append(vacancy)
+
+        top_vacancies_list = []
+
+        for currency, vacancies in top_vacancies.items():
+            top_vacancies_list.extend(vacancies)
+
+        return top_vacancies_list
