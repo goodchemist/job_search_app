@@ -121,5 +121,6 @@ class Vacancy:
         """
 
         sorted_vacancies = sorted(vacancies,
-                                  key=lambda vacancy: (cls.calculate_max_salary(vacancy), vacancy.salary_currency))
+                                  key=lambda vacancy: (cls.calculate_max_salary(vacancy), vacancy.salary_currency),
+                                  reverse=True)
         return sorted_vacancies
