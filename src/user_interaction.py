@@ -69,8 +69,15 @@ def user_interaction():
             save_vacancies(sorted_vacancies)
 
         elif user_choice == '3':
-            top_n = int(input("Введите количество вакансий для вывода в топ N: "))
-            pass
+
+            top_n = int(input("Введите количество вакансий для вывода в топ N: ").strip())
+
+            top_n_vacancies = Vacancy.get_top_n_vacancies_by_salary(vacancies_list, top_n)
+
+            for vacancy in top_n_vacancies:
+                print(vacancy)
+
+            save_vacancies(top_n_vacancies)
 
         elif user_choice == '4':
             break  # exit()
