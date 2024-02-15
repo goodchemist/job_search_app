@@ -61,7 +61,12 @@ def user_interaction():
             pass
 
         elif user_choice == '2':
-            pass
+            sorted_vacancies = Vacancy.sort_by_salary(vacancies_list)
+
+            for vacancy in sorted_vacancies:
+                print(vacancy)
+
+            save_vacancies(sorted_vacancies)
 
         elif user_choice == '3':
             top_n = int(input("Введите количество вакансий для вывода в топ N: "))
