@@ -162,3 +162,19 @@ class Vacancy:
             top_vacancies_list.extend(vacancies)
 
         return top_vacancies_list
+
+    @classmethod
+    def get_vacancies_by_city(cls, vacancies: list, city: str) -> list:
+        """
+        Находит вакансии из списка вакансий по указанному городу.
+        :param vacancies: список вакансий.
+        :param city: название города.
+        :return: список вакансий в указанном городе.
+        """
+        vacancies_by_city = []
+
+        for vacancy in vacancies:
+            if vacancy.city.lower() == city.lower():
+                vacancies_by_city.append(vacancy)
+
+        return vacancies_by_city
