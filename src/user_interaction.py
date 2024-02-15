@@ -57,8 +57,19 @@ def user_interaction():
             save_vacancies(vacancies_list)
 
         elif user_choice == '1':
-            city_for_sorting = input("Введите название города: ")
-            pass
+            city_for_sorting = input("Введите название города: ").strip().lower()
+
+            vacancies_by_city = Vacancy.get_vacancies_by_city(vacancies_list, city_for_sorting)
+
+            if vacancies_by_city:
+
+                for vacancy in vacancies_by_city:
+                    print(vacancy)
+
+                save_vacancies(vacancies_by_city)
+
+            else:
+                print("К сожалению, вакансий в таком городе не найдено. :(")
 
         elif user_choice == '2':
             sorted_vacancies = Vacancy.sort_by_salary(vacancies_list)
