@@ -23,7 +23,7 @@ class HeadHunterAPI(SearchJobAPI):
 
         url = 'https://api.hh.ru/vacancies'
 
-        query_ = {'text': query}
+        query_ = {'text': query, 'per_page': 100}
 
         try:
             response = requests.get(url, params=query_)
