@@ -1,6 +1,6 @@
 import json
 
-from abstract_saver import Saver
+from .abstract_saver import Saver
 
 
 class JSONSaver(Saver):
