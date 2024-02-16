@@ -1,7 +1,9 @@
 import json
 
+from abstract_saver import Saver
 
-class JSONSaver:
+
+class JSONSaver(Saver):
     """Класс для хранения информации о вакансиях в JSON-файле."""
 
     def __init__(self, file_name='vacancies.json'):
