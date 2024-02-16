@@ -27,6 +27,22 @@ def test_get_vacancies_invalid_query():
         api.get_vacancies(query)
 
 
+def test_get_vacancies_exception():
+    """
+    Проверяет вызов исключения при возникновении ошибки запроса.
+    """
+    with pytest.raises(Exception) as exc:
+        fake_api = HeadHunterAPI()
+
+        fake_api._url = 'https://fakeapi.hh.ru/vacancies'
+
+        fake_api.get_vacancies('test')
+
+    assert str(
+        exc.value) == (f'Ошибка при выполнении запроса: 404 Client Error: Not Found for url: \
+{fake_api._url + "?text=test&per_page=100"}.')
+
+
 def test_repr():
     """
     Проверяет корректность метода __repr__.
