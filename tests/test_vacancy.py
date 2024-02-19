@@ -125,3 +125,13 @@ def test_str(vacancy):
     """
 
     assert str(vacancy) == 'Software Engineer, 50000, 80000, RUR, Moscow, Python developer, www.hh.ru'
+
+
+def test_repr(vacancy):
+    """
+    Проверяет корректность метода __repr__.
+    """
+    representation = 'Vacancy(name=Software Engineer, salary_from=50000, salary_to=80000, salary_currency=RUR, \
+city=Moscow, description=Python developer, url_vacancy=www.hh.ru)'
+
+    assert repr(vacancy) == representation
