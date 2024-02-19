@@ -12,6 +12,29 @@ def vacancy():
                    url_vacancy='www.hh.ru')
 
 
+@pytest.fixture
+def vacancies():
+    """
+    Фикстура со списком вакансий (экземпляров класса Vacancy).
+    """
+    vacancies = [
+        Vacancy(name='A-RUR', salary_from=50000, salary_to=80000, salary_currency='RUR', city='Moscow',
+                description='--', url_vacancy='123'),
+        Vacancy(name='B-RUR', salary_from=60000, salary_to=90000, salary_currency='RUR', city='New York',
+                description='--', url_vacancy='123'),
+        Vacancy(name='C-RUR', salary_from=55000, salary_to=85000, salary_currency='RUR', city='Seattle',
+                description='--', url_vacancy='123'),
+        Vacancy(name='A-USD', salary_from=500, salary_to=800, salary_currency='USD', city='Moscow', description='--',
+                url_vacancy='123'),
+        Vacancy(name='B-USD', salary_from=600, salary_to=900, salary_currency='USD', city='New York', description='--',
+                url_vacancy='123'),
+        Vacancy(name='C-USD', salary_from=550, salary_to=850, salary_currency='USD', city='Seattle', description='--',
+                url_vacancy='123')
+    ]
+
+    return vacancies
+
+
 def test_vacancy_initialization(vacancy):
     """
     Проверяет работу __init__.
@@ -55,3 +78,18 @@ def test_calculate_max_salary_when_both_salaries_not_provided(vacancy):
     vacancy.salary_from = '--'
     vacancy.salary_to = '--'
     assert Vacancy.calculate_max_salary(vacancy) == 0
+
+
+def test_sort_by_salary(vacancies):
+    """
+    Проверяет работу метода sort_by_salary.
+    """
+
+    sorted_vacancies = Vacancy.sort_by_salary(vacancies)
+
+    assert sorted_vacancies[0].name == 'B-RUR'
+    assert sorted_vacancies[1].name == 'C-RUR'
+    assert sorted_vacancies[2].name == 'A-RUR'
+    assert sorted_vacancies[3].name == 'B-USD'
+    assert sorted_vacancies[4].name == 'C-USD'
+    assert sorted_vacancies[5].name == 'A-USD'
