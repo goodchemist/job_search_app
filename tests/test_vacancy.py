@@ -93,3 +93,14 @@ def test_sort_by_salary(vacancies):
     assert sorted_vacancies[3].name == 'B-USD'
     assert sorted_vacancies[4].name == 'C-USD'
     assert sorted_vacancies[5].name == 'A-USD'
+
+
+def test_get_top_n_vacancies_by_salary(vacancies):
+    """
+    Проверяет работу метода get_top_n_vacancies_by_salary.
+    """
+
+    top_n = 2
+
+    top_vacancies = Vacancy.get_top_n_vacancies_by_salary(vacancies, top_n)
+    assert len(top_vacancies) == 4  # т.к. у нас останется 2 вакансии c RUR и 2 вакансии c USD
