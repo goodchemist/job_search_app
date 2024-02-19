@@ -135,3 +135,24 @@ def test_repr(vacancy):
 city=Moscow, description=Python developer, url_vacancy=www.hh.ru)'
 
     assert repr(vacancy) == representation
+
+
+def test_cast_to_object_list():
+    """
+    Проверяет работу метода cast_to_object_list.
+    """
+    json_data = {
+        'items': [
+            {'name': 'Python development', 'salary': {'from': 50000, 'to': 80000, 'currency': 'RUR'},
+             'area': {'name': 'Omsk'}, 'snippet': {'responsibility': 'abc'}, 'alternate_url': '123'},
+            {'name': 'Product Manager', 'salary': {'from': 60000, 'to': 80000, 'currency': 'RUR'},
+             'area': {'name': 'Moscow'}, 'snippet': {'responsibility': 'abc'}, 'alternate_url': '123'}
+        ]
+    }
+
+    vacancies = Vacancy.cast_to_object_list(json_data)
+
+    assert len(vacancies) == 2
+    assert vacancies[0].name == 'Python development'
+    assert vacancies[0].salary_from == 50000
+    assert vacancies[1].city == 'Moscow'
