@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Инженер машинного зрения (computer vision)",
+        "salary_from": 320000,
+        "salary_to": 600000,
+        "salary_currency": "RUR",
+        "city": "Москва",
+        "description": "Написание кода для решения конкретных задач по компьютерной обработке изображений <highlighttext>Python</highlighttext>, Tensorflow, PyTorch и т.д.. Выбор для работы камер...",
+        "url_vacancy": "https://hh.ru/vacancy/93431808"
+    },
+    {
+        "name": "React разработчик",
+        "salary_from": 500000,
+        "salary_to": "--",
+        "salary_currency": "RUR",
+        "city": "Москва",
+        "description": null,
+        "url_vacancy": "https://hh.ru/vacancy/93304212"
+    },
+    {
+        "name": "Разработчик",
+        "salary_from": 250000,
+        "salary_to": 1000000,
+        "salary_currency": "KZT",
+        "city": "Астана",
+        "description": "Проектирование, разработка, тестирование. -Программирование REST API в синхронном и асинхронном режиме. -Автоматизировать разработку и тестирование.",
+        "url_vacancy": "https://hh.ru/vacancy/93344198"
+    },
+    {
+        "name": "Маркетинговый аналитик",
+        "salary_from": 600000,
+        "salary_to": 950000,
+        "salary_currency": "KZT",
+        "city": "Алматы",
+        "description": "Помогать оптимизировать наш маркетинг. Заниматься оптимизацией и повышением эффективности компаний. Строить и улучшать воронки. Анализировать показатели сайтов и приложений для...",
+        "url_vacancy": "https://hh.ru/vacancy/93266553"
+    },
+    {
+        "name": "Middle QA engineer (remote)",
+        "salary_from": 2300,
+        "salary_to": 2500,
+        "salary_currency": "USD",
+        "city": "Тбилиси",
+        "description": "Quality assurance of an analytics product.",
+        "url_vacancy": "https://hh.ru/vacancy/92810912"
+    },
+    {
+        "name": "Программист Python junior",
+        "salary_from": 300,
+        "salary_to": 1000,
+        "salary_currency": "USD",
+        "city": "Минск",
+        "description": "Разработка микроприложений на базе FastApi. Разработка различных интеграций между SAAS сервисами (сервисы оплат, доставок и прочего) по API. ",
+        "url_vacancy": "https://hh.ru/vacancy/92292020"
+    }
+]
