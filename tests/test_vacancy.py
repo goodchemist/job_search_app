@@ -156,3 +156,20 @@ def test_cast_to_object_list():
     assert vacancies[0].name == 'Python development'
     assert vacancies[0].salary_from == 50000
     assert vacancies[1].city == 'Moscow'
+
+
+def test_cast_to_object_list_with_valid_salary():
+    """
+    Проверяет работу метода cast_to_object_list, если какие-то данные по зарплате не указаны.
+    """
+    json_data = {
+        'items': [
+            {'name': 'Python development', 'salary': None,
+             'area': {'name': 'Omsk'}, 'snippet': {'responsibility': 'abc'}, 'alternate_url': '123'},
+        ]
+    }
+    vacancies = Vacancy.cast_to_object_list(json_data)
+
+    assert vacancies[0].salary_from == '--'
+    assert vacancies[0].salary_to == '--'
+    assert vacancies[0].salary_currency == 'Валюта не указана'
