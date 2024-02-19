@@ -117,3 +117,11 @@ def test_get_vacancies_by_city(vacancies):
 
     for vacancy in vacancies_in_city:
         assert vacancy.city.lower() == city.lower()
+
+
+def test_str(vacancy):
+    """
+    Проверяет корректность метода __str__.
+    """
+
+    assert str(vacancy) == 'Software Engineer, 50000, 80000, RUR, Moscow, Python developer, www.hh.ru'
