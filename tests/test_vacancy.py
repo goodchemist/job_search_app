@@ -104,3 +104,16 @@ def test_get_top_n_vacancies_by_salary(vacancies):
 
     top_vacancies = Vacancy.get_top_n_vacancies_by_salary(vacancies, top_n)
     assert len(top_vacancies) == 4  # т.к. у нас останется 2 вакансии c RUR и 2 вакансии c USD
+
+
+def test_get_vacancies_by_city(vacancies):
+    """
+    Проверяет работу метода get_vacancies_by_city.
+    """
+
+    city = 'Moscow'
+
+    vacancies_in_city = Vacancy.get_vacancies_by_city(vacancies, city)
+
+    for vacancy in vacancies_in_city:
+        assert vacancy.city.lower() == city.lower()
