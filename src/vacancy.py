@@ -1,7 +1,8 @@
 class Vacancy:
     """Класс для работы с вакансиями."""
 
-    def __init__(self, name: str, salary_from: str, salary_to: str, salary_currency: str, city: str, description: str,
+    def __init__(self, name: str, salary_from: (int | float | str), salary_to: (int | float | str),
+                 salary_currency: str, city: str, description: str,
                  url_vacancy: str) -> None:
         """
         Создание экземпляра класса Vacancy.
