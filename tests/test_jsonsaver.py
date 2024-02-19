@@ -72,3 +72,21 @@ def test_add_to_json_file(file_name, test_data):  # !!!!!
         data = json.load(file)
         assert len(data) == 4
         assert data[3]["salary_to"] == "2"
+
+
+def test_repr():
+    """
+    Проверяет корректность метода __repr__.
+    """
+    json_saver = JSONSaver()
+
+    assert repr(json_saver) == "JSONSaver(file_name=vacancies.json)"
+
+
+def test_str():
+    """
+    Проверяет корректность метода __str__.
+    """
+    json_saver = JSONSaver()
+
+    assert str(json_saver) == "vacancies.json"
